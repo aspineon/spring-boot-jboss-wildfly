@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.3.RELEASE</version>
+          <version>2.1.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -41,13 +41,20 @@
             <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
+
+      <dependency>
+          <groupId>org.ow2.asm</groupId>
+          <artifactId>asm</artifactId>
+          <version>6.2</version> <!-- Use newer version of ASM -->
+      </dependency>
+
     </dependencies>
 
     <build>
         <plugins>
             <!-- This is needed so Wildfly can run a Java 10 application. -->
             <!-- See https://jira.spring.io/browse/SPR-16990 -->
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
@@ -57,7 +64,22 @@
                         </manifestEntries>
                     </archive>
                 </configuration>
+            </plugin>-->
+
+            <plugin>
+
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                    <fork>true</fork>
+                    <executable>/Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home/bin/javac</executable> <!--PATH TO JAVAC -->
+                </configuration>
             </plugin>
+
             <!-- OPTIONAL: Remove this plugin to reduce the WAR file size. It's not needed to deploy in an external application server. -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
