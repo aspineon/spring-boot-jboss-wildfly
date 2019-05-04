@@ -3,6 +3,7 @@ package com.thepracticaldeveloper.jbosswildflydemo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * @author moises.macero
@@ -12,8 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 public final class HolaController {
 
     @GetMapping
-    public String dimeHola(){
-        var message = "Hola Amigo!";
+    public String dimeHolaGet(){
+        String message = "Hola Amigo get!";
         return message;
     }
+
 }
